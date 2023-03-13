@@ -1,4 +1,5 @@
 node_modules/
+mochawesome-report/
 payloads.txt
 instalacoes.txt
 package.json
