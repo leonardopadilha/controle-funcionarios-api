@@ -41,6 +41,15 @@ const deletar = async function(id) {
     })
 }
 
+const deletarParaValer = async function(id) {
+    return await Cargo.destroy({
+        where: {
+            id: id,
+        },
+        force: true
+    })
+}
+
 module.exports = {
     criar: criar,
     encontrarCargoPorWhere: encontrarCargoPorWhere,
@@ -48,5 +57,6 @@ module.exports = {
     encontrarTodos: encontrarTodos,
     criarVariosCargosAoMesmoTempo: criarVariosCargosAoMesmoTempo,
     deletar: deletar,
-    atualizar: atualizar
+    atualizar: atualizar,
+    deletarParaValer: deletarParaValer
 }

@@ -10,6 +10,7 @@ router
     .get('/', cargoController.encontrarTodos)
     .get('/:id', cargoValidator.encontrarCargoPorId(), cargoController.encontrarCargoPorId)
     .delete('/:id', cargoValidator.deletar(), cargoController.deletar)
+    .delete('/cargo/:id', cargoController.deletarParaValer)
     .put('/:id', cargoValidator.atualizar(), cargoController.atualizar)
 
 

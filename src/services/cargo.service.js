@@ -71,11 +71,23 @@ const deletar = async function(id) {
     return cargo;
 }
 
+const deletarParaValer = async function(id) {
+    const cargo = await cargoRepository.encontrarCargoPorId(id);
+
+    if (!cargo) {
+        return createError(404, `Desculpe, o id ${id} não foi encontrado`)
+    }
+
+    await cargoRepository.deletarParaValer(id);
+    return cargo;
+}
+
 module.exports = {
     criar: criar,
     encontrarCargoPorId: encontrarCargoPorId,
     encontrarTodos: encontrarTodos,
     criarVariosCargosAoMesmoTempo: criarVariosCargosAoMesmoTempo,
     deletar: deletar,
-    atualizar: atualizar
+    atualizar: atualizar,
+    deletarParaValer: deletarParaValer
 }

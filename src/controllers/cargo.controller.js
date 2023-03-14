@@ -113,11 +113,31 @@ const deletar = async function(req, res, next) {
     }
 }
 
+const deletarParaValer = async function(req, res, next) {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            throw createError(422, { errors: errors.array() })
+        }
+
+        const response = await cargoService.deletarParaValer(req.params.id);
+        
+        if (response && response.message) {
+            throw response;
+        }
+        res.send(response)
+    } catch (error) {
+        return next(error);
+    }
+}
+
 module.exports = {
     criar: criar,
     encontrarCargoPorId: encontrarCargoPorId,
     encontrarTodos: encontrarTodos,
     criarVariosCargosAoMesmoTempo: criarVariosCargosAoMesmoTempo,
     deletar: deletar,
-    atualizar: atualizar
+    atualizar: atualizar,
+    deletarParaValer: deletarParaValer
 }

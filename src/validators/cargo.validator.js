@@ -3,8 +3,8 @@ const { validatorMessage } = require('../utils/errorMessage');
 
 const criar = function() {
     return [
-        body('nome', validatorMessage('Nome')).exists().bail().isString(),
-        body('descricao', validatorMessage('Descricao')).exists().bail().isString()
+        body('nome', validatorMessage('Nome')).exists().notEmpty().bail().isString(),
+        body('descricao', validatorMessage('Descricao')).exists().notEmpty().bail().isString()
     ]
 }
 

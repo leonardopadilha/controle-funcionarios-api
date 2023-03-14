@@ -2,5 +2,13 @@
     "sucess" : {
         "nome": "Porteiro",
         "descricao": "Fiscalizar, observar e orientar a entrada e saída de pessoas"
+    },
+    "nome_vazio": {
+        "nome": "",
+        "descricao": "descricao"
+    },
+    "descricao_vazia": {
+        "nome": "nome",
+        "descricao": ""
     }
 }
