@@ -60,7 +60,7 @@ describe('Cargos', () => {
     context('Dado que informo o id de um cargo para exclusão', () => {
         it('Então o cargo deve ser excluído com sucesso', (done) => {
             request
-                .delete(endpoints.DELETE_CARGO + id)
+                .delete(`${endpoints.DELETE_CARGO}/${id}`)
                 .end((err, res) => {
                     expect(res).status(200)
                     expect(res.body.id).to.equals(id)
