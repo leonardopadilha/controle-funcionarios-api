@@ -2,20 +2,35 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('departamentos', {
+    await queryInterface.createTable('trabalha', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      cod_gerente: {
+      cod_func: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'funcionarios'
+          },
+          key: 'id'
+        }
       },
-      nome: {
+      num_proj: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'projetos'
+          },
+          key: 'id'
+        }
+      },
+      num_horas_sem: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +47,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('departamentos');
+    await queryInterface.dropTable('trabalha');
   }
 };

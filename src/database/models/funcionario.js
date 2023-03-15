@@ -10,7 +10,25 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Funcionario.hasMany(models.Dependente, {
+        foreignKey: 'cod_func',
+        as: 'dependentes'
+      })
+
+      Funcionario.belongsTo(models.Cargo, {
+        foreignKey: 'nro_cargo',
+        as: 'cargos'
+      })
+
+      Funcionario.belongsTo(models.Departamento, {
+        foreignKey: 'nro_depto',
+        as: 'departamentos'
+      })
+
+      Funcionario.hasMany(models.Trabalha, {
+        foreignKey: 'cod_func',
+        as: 'trabalha'
+      })
     }
   }
   Funcionario.init({
@@ -20,6 +38,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Funcionario',
+    tableName: 'funcionarios',
+    paranoid: true
   });
   return Funcionario;
 };

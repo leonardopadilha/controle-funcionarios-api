@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Cargo.hasMany(models.Funcionario, {
+        foreignKey: 'nro_cargo',
+        as: 'funcionarios'
+      })
     }
   }
   Cargo.init({

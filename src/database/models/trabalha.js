@@ -10,7 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Trabalha.belongsTo(models.Funcionario, {
+        foreignKey: 'cod_func',
+        as: 'funcionarios'
+      })
+
+      Trabalha.belongsTo(models.Projeto, {
+        foreignKey: 'num_proj',
+        as: 'projetos'
+      })
     }
   }
   Trabalha.init({
@@ -18,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Trabalha',
+    tableName: 'trabalha',
+    paranoid: true
   });
   return Trabalha;
 };
