@@ -71,6 +71,20 @@ describe('Cargos', () => {
         })
     })
 
+    context('Que realizo um GET por cargos', () => {
+        it('Então os cargos são retornados com sucesso', (done) => {
+            request
+                .get(`${endpoints.GET_CARGO}/${id}`)
+                .end((err, res) => {
+                    expect(res).to.have.status(200)
+                    expect(res.body.id).to.equals(id)
+                    expect(res.body.nome).to.equals(data.sucess.nome)
+                    expect(res.body.descricao).to.equals(data.sucess.descricao)
+                    done()
+                })
+        })
+    })
+
     context('Dado que informo o id de um cargo para exclusão', () => {
         it('Então o cargo deve ser excluído com sucesso', (done) => {
             request
