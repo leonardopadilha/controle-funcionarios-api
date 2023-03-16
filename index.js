@@ -10,12 +10,14 @@ const app = express();
 
 const funcionarioRoute = require('./src/routes/funcionario.route');
 const cargoRoute = require('./src/routes/cargo.route');
+const departamentoRoute = require('./src/routes/departamento.route')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api/funcionarios/', funcionarioRoute);
 app.use('/api/cargos', cargoRoute)
+app.use('/api/departamentos', departamentoRoute)
 
 app.use(handle_404Error);
 app.use(handleError)
