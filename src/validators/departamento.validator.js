@@ -8,6 +8,20 @@ const criar = function() {
     ]
 }
 
+const encontrarDepartamentoPorId = function() {
+    return [
+        param('id', validatorMessage('Id')).exists().bail().isInt()
+    ]
+}
+
+const deletarDepartamento = function() {
+    return [
+        param('id', validatorMessage('Id')).exists().bail().isInt()
+    ]
+}
+
 module.exports = {
-    criar: criar
+    criar: criar,
+    encontrarDepartamentoPorId: encontrarDepartamentoPorId,
+    deletarDepartamento: deletarDepartamento
 }
