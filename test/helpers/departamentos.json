@@ -1,0 +1,10 @@
+{
+    "sucess": {
+        "id": 1,
+        "cod_gerente": 1,
+        "nome": "Gerencia geral",
+        "createdAt": "2023-03-15T15:38:49.000Z",
+        "updatedAt": "2023-03-15T15:38:49.000Z",
+        "deletedAt": null
+    }
+}
