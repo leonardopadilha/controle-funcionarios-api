@@ -15,8 +15,14 @@ const pesquisarFuncionarioPorId = async function(id) {
     return funcionario;
 }
 
+const pesquisarFuncionarioPorWhere = async function(funcionario) {
+    const funcionarioEncontrado = await Funcionario.findOne({ where: email})
+    return funcionarioEncontrado;
+}
+
 module.exports = {
     criar: criar,
     pesquisarTodosFuncionarios: pesquisarTodosFuncionarios,
-    pesquisarFuncionarioPorId: pesquisarFuncionarioPorId
+    pesquisarFuncionarioPorId: pesquisarFuncionarioPorId,
+    pesquisarFuncionarioPorWhere: pesquisarFuncionarioPorWhere
 }
