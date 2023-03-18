@@ -33,6 +33,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Funcionario.init({
     nome: DataTypes.STRING,
+    email:DataTypes.STRING,
+    senha: DataTypes.STRING,
     sexo: DataTypes.STRING,
     dta_nasc: DataTypes.STRING
   }, {
