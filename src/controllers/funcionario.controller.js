@@ -31,15 +31,7 @@ const criar = async function(req, res, next) {
             throw createError(422, { errors: errors.array() })
         }
 
-        const response = await funcionarioService.criar({
-            nro_depto: req.body.nro_depto,
-            nro_cargo: req.body.nro_cargo,
-            nome: req.body.nome,
-            email: req.body.email,
-            senha: req.body.senha,
-            sexo: req.body.sexo,
-            dta_nasc: req.body.dta_nasc
-        })
+        const response = await funcionarioService.criar(req.body)
 
         res.send(response)
         

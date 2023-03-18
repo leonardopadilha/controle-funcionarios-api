@@ -7,9 +7,7 @@ require('dotenv').config()
 
 const login = async function(funcionario) {
 
-    console.log("vish" + funcionario)
-
-    const funcionarioLogado = await funcionarioRepository.pesquisarFuncionarioPorWhere({ email: funcionario.email })
+   const funcionarioLogado = await funcionarioRepository.pesquisarFuncionarioPorWhere({ email: funcionario.email })
 
     if (!funcionarioLogado) {
         return createError(401, 'Funcionário não encontrado');
@@ -35,6 +33,13 @@ const login = async function(funcionario) {
 }
 
 const criar = async function(funcionario) {
+
+    const existeFuncionario = await funcionarioRepository.pesquisarFuncionarioPorWhere({email: funcionario.email})
+
+    if (existeFuncionario) {
+        return createError(409, 'Funcionário já existe')
+    }
+    funcionario.senha = await bcrypt.hash(funcionario.senha, ~~process.env.SALT);
     const funcionarioCriado = await funcionarioRepository.criar(funcionario);
     return funcionarioCriado;
 }

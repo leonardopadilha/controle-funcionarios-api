@@ -16,7 +16,7 @@ const pesquisarFuncionarioPorId = async function(id) {
 }
 
 const pesquisarFuncionarioPorWhere = async function(funcionario) {
-    const funcionarioEncontrado = await Funcionario.findOne({ where: email})
+    const funcionarioEncontrado = await Funcionario.findOne({ where: funcionario})
     return funcionarioEncontrado;
 }
 
