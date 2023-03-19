@@ -1,7 +1,6 @@
 const departamentoService = require('../services/departamento.service')
 const { validationResult } = require('express-validator')
 const createError = require('http-errors')
-const { errors } = require('playwright')
 
 const criar = async function(req, res, next) {
     try {
