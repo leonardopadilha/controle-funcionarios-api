@@ -7,5 +7,7 @@ router
     .get('/', funcionarioController.pesquisarTodosFuncionarios)
     .get('/:id', funcionarioController.pesquisarFuncionarioPorId)
     .post('/', funcionarioValidator.criar(), funcionarioController.criar)
+    
+    .post('/login', funcionarioController.login)
 
 module.exports = router;
