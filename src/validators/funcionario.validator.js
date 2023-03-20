@@ -13,6 +13,14 @@ const criar = function() {
     ]
 }
 
+const login = function() {
+    return [
+        body('email', validatorMessage('Email')).exists().bail().notEmpty().isEmail(),
+        body('senha', validatorMessage('Senha')).exists().notEmpty().bail().isString(),
+    ]
+}
+
 module.exports = {
+    login,login,
     criar: criar
 }

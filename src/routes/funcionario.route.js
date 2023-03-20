@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const funcionarioController = require('../controllers/funcionario.controller');
 const funcionarioValidator = require('../validators/funcionario.validator')
+const verifyJWT = require('../middlewares/authorizator')
 
 router
-    .get('/', funcionarioController.pesquisarTodosFuncionarios)
-    .get('/:id', funcionarioController.pesquisarFuncionarioPorId)
+    .get('/', verifyJWT, funcionarioController.pesquisarTodosFuncionarios)
+    .get('/:id', funcionarioValidator.login(), funcionarioController.pesquisarFuncionarioPorId)
     .post('/', funcionarioValidator.criar(), funcionarioController.criar)
     
     .post('/login', funcionarioController.login)
