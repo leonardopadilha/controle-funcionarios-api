@@ -32,12 +32,19 @@ const pesquisarPorId = async function(id) {
     return dependente;
 }
 
-/* const pesquisarPorWhere = async function(nome) {
+const pesquisarPorQuery = async function(dependente) {
+    const dependentePesquisado = await dependenteRepository.pesquisarPorQuery({nome: dependente.nome})
 
-} */
+    if (dependentePesquisado.length === 0) {
+        return createError(400, "Dependentes não cadastrados")
+    }
+
+    return dependentePesquisado
+}
 
 module.exports = {
     criar: criar,
     pesquisarPorId: pesquisarPorId,
-    pesquisarTodosDependentes: pesquisarTodosDependentes
+    pesquisarTodosDependentes: pesquisarTodosDependentes,
+    pesquisarPorQuery: pesquisarPorQuery
 }
