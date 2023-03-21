@@ -46,8 +46,18 @@ const pesquisarTodosDependentes = async function(req, res, next) {
     }
 }
 
+const pesquisarPorQuery = async function(req, res, next) {
+    try {
+        const response = await dependenteService.pesquisarPorQuery(req.query)
+        res.send(response)
+    } catch (error) {
+        return next(error)
+    }
+}
+
 module.exports = {
     criar: criar,
     pesquisarPorId: pesquisarPorId,
-    pesquisarTodosDependentes: pesquisarTodosDependentes
+    pesquisarTodosDependentes: pesquisarTodosDependentes,
+    pesquisarPorQuery: pesquisarPorQuery
 }
