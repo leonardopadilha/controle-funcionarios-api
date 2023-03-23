@@ -17,6 +17,22 @@ const criar = async function(req, res, next) {
     }
 }
 
+const criarVariosDependentes = async function(req, res, next) {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            throw createError(422, { errors: errors.array() })
+        }
+
+        const response = await dependenteService.criarVariosDependentes(req.body);
+
+        res.send(response);
+    } catch (error) {
+        return next(error);
+    }
+}
+
 const pesquisarPorId = async function(req, res, next) {
     try {
         const errors = validationResult(req)
@@ -59,5 +75,6 @@ module.exports = {
     criar: criar,
     pesquisarPorId: pesquisarPorId,
     pesquisarTodosDependentes: pesquisarTodosDependentes,
-    pesquisarPorQuery: pesquisarPorQuery
+    pesquisarPorQuery: pesquisarPorQuery,
+    criarVariosDependentes: criarVariosDependentes
 }

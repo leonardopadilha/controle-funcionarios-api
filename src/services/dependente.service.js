@@ -42,9 +42,28 @@ const pesquisarPorQuery = async function(dependente) {
     return dependentePesquisado
 }
 
+const criarVariosDependentes = async function(dependentes) {
+    let dependentesCriados = "";
+    const arrayDependentes = [];
+
+    for(let i = 0; i < dependentes.length; i++) {
+        const dependentesPesquisados = await dependenteRepository.pesquisarPorWhere({nome: dependentes[i].nome});
+
+        if (dependentesPesquisados) {
+            return createError(409, `${i + 1}º dependente (${dependentes[i].nome}) já cadastrado`)
+        } else {
+            dependentesCriados = await dependenteRepository.criar(dependentes[i])
+            arrayDependentes.push(dependentesCriados)
+        }
+    };
+
+    return arrayDependentes;    
+}
+
 module.exports = {
     criar: criar,
     pesquisarPorId: pesquisarPorId,
     pesquisarTodosDependentes: pesquisarTodosDependentes,
-    pesquisarPorQuery: pesquisarPorQuery
+    pesquisarPorQuery: pesquisarPorQuery,
+    criarVariosDependentes: criarVariosDependentes
 }

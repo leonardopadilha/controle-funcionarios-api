@@ -9,5 +9,6 @@ router
     .get('/', dependenteController.pesquisarTodosDependentes)
     .get('/:id', dependenteValidator.pesquisarParentescoPorId(), dependenteController.pesquisarPorId)
     .post('/', dependenteValidator.criar(), dependenteController.criar)
+    .post('/varios', dependenteController.criarVariosDependentes)
 
 module.exports = router
