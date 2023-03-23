@@ -24,7 +24,6 @@ const pesquisarPorWhere = async function(nome) {
 const pesquisarPorQuery = async function(dependente) {
     const dependentePesquisado = Object.values(dependente)
 
-
     const dependenteEncontrado = await sequelize.query(
         'SELECT * FROM dependentes WHERE nome LIKE :nome',
         {
