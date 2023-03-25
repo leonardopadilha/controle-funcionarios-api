@@ -13,9 +13,25 @@ const criar = async function(projeto) {
     return projetoCadastrado;
 }
 
-/* const criarVariosProjetos = async function(projetos) {
+const criarVariosProjetos = async function(projeto) {
 
-} */
+    let projetosCriados = "";
+    const arrayprojetos = [];
+
+    for (let i = 0; i < projeto.length; i++) {
+    
+        const projetosPesquisados = await projetoRepository.pesquisarProjetoPorWhere({ nome: projeto[i].nome })
+
+        if (projetosPesquisados) {
+            return createError(409, `Projeto ${projeto[i].nome} já cadastrado`)
+        } else {
+            projetosCriados = await projetoRepository.criar(projeto[i])
+            arrayprojetos.push(projetosCriados);
+        }
+    }
+
+    return arrayprojetos;
+}
 
 const pesquisarTodosProjetos = async function() {
     const projetos = await projetoRepository.pesquisarTodosProjetos();
@@ -60,6 +76,7 @@ const deletarProjeto = async function(id) {
 
 module.exports = {
     criar: criar,
+    criarVariosProjetos: criarVariosProjetos,
     pesquisarTodosProjetos: pesquisarTodosProjetos,
     pesquisarProjetoPorId: pesquisarProjetoPorId,
     pesquisarProjetoPorQuery: pesquisarProjetoPorQuery,
