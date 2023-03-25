@@ -6,6 +6,12 @@ const projetoValidator = require('../validators/projeto.validator')
 
 router 
     .post('/', projetoValidator.criar(), projetoController.criar)
+    .post('/varios', projetoController.criarVariosProjetos)
+
     .delete('/:id', projetoController.deletarProjetos)
+
+    .get('/buscar', projetoController.pesquisarProjetoPorQuery)
+    .get('/', projetoController.pesquisarTodosProjetos)
+    .get('/:id', projetoController.pesquisarProjetoPorId)
 
 module.exports = router;
