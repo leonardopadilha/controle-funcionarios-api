@@ -74,11 +74,23 @@ const deletarProjeto = async function(id) {
     return projeto;
 }
 
+const deletarProjetoParaValer = async function(id) {
+    const projeto = await projetoRepository.pesquisarProjetoPorId(id)
+
+    if (!projeto) {
+        return createError(404, `Desculpe, o id ${id} não foi encontrado`)
+    }
+
+    await projetoRepository.deletarProjetoParaValer(id);
+    return projeto;
+}
+
 module.exports = {
     criar: criar,
     criarVariosProjetos: criarVariosProjetos,
     pesquisarTodosProjetos: pesquisarTodosProjetos,
     pesquisarProjetoPorId: pesquisarProjetoPorId,
     pesquisarProjetoPorQuery: pesquisarProjetoPorQuery,
-    deletarProjeto: deletarProjeto
+    deletarProjeto: deletarProjeto,
+    deletarProjetoParaValer: deletarProjetoParaValer
 }
