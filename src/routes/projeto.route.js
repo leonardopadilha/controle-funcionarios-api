@@ -9,6 +9,7 @@ router
     .post('/varios', projetoController.criarVariosProjetos)
 
     .delete('/:id', projetoController.deletarProjetos)
+    .delete('/deletar/:id', projetoController.deletarProjetoParaValer)
 
     .get('/buscar', projetoController.pesquisarProjetoPorQuery)
     .get('/', projetoController.pesquisarTodosProjetos)
