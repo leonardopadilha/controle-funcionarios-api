@@ -49,6 +49,15 @@ const deletarProjeto = async function(id) {
     })
 }
 
+const deletarProjetoParaValer = async function(id) {
+    return await Projeto.destroy({
+        where: {
+            id: id,
+        },
+        force: true,
+    })
+}
+
 module.exports = {
     criar: criar,
     criarVariosProjetos: criarVariosProjetos,
@@ -56,5 +65,6 @@ module.exports = {
     pesquisarProjetoPorId: pesquisarProjetoPorId,
     pesquisarProjetoPorWhere: pesquisarProjetoPorWhere,
     pesquisarProjetoPorQuery: pesquisarProjetoPorQuery,
-    deletarProjeto: deletarProjeto
+    deletarProjeto: deletarProjeto,
+    deletarProjetoParaValer: deletarProjetoParaValer
 }
