@@ -89,11 +89,26 @@ const deletarProjetos = async function(req, res, next) {
     }
 }
 
+const deletarProjetoParaValer = async function(req, res, next) {
+    try {
+        const response = await projetoService.deletarProjetoParaValer(req.params.id);
+
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response)
+    } catch (error) {
+        return next(error)
+    }
+}
+
 module.exports = {
     criar: criar,
     criarVariosProjetos: criarVariosProjetos,
     pesquisarTodosProjetos: pesquisarTodosProjetos,
     pesquisarProjetoPorId: pesquisarProjetoPorId,
     pesquisarProjetoPorQuery: pesquisarProjetoPorQuery,
-    deletarProjetos: deletarProjetos
+    deletarProjetos: deletarProjetos,
+    deletarProjetoParaValer: deletarProjetoParaValer
 }
