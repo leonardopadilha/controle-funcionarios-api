@@ -1,6 +1,5 @@
 const { Projeto, sequelize } = require('../database/models')
 const { QueryTypes } = require('sequelize');
-const { pesquisarPorQuery } = require('./dependente.repository');
 
 const criar = async function(projeto) {
     const projetoCriado = await Projeto.create(projeto);
