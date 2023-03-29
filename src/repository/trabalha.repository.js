@@ -36,6 +36,8 @@ const pesquisarDadosTrabalhadorPorQuery = async function(horasProjeto) {
             Type: QueryTypes.SELECT
         }
     );
+    
+    return horasProjetoRetornado;
 }
 
 const deletarRegistros = async function(idFuncionario) {
