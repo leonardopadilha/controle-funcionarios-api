@@ -39,4 +39,45 @@ const pesquisarDadosTrabalhador = async function() {
     return infoTrabalhadores;
 }
 
+const pesquisarDadosTrabalhadorPorQuery = async function(infoTrabalhador) {
+    const dadosTrabalhador = await trabalhaRepository.pesquisarDadosTrabalhadorPorQuery({ cod_func: infoTrabalhador.cod_func})
+
+    if (dadosTrabalhador.length === 0) {
+        return createError(400, "Informações não cadastradas")
+    }
+
+    return dadosTrabalhador;
+}
+
+const deletarRegistros = async function(id) {
+    const infoTrabalhador = await trabalhaRepository.pesquisarDadosTrabalhadorPorId(id);
+
+    if (!infoTrabalhador) {
+        return createError(404, `Desculpe, o id ${id} não foi encontrado`)
+    }
+
+    const dadosTrabalhador = await trabalhaRepository.deletarRegistros(id);
+    return dadosTrabalhador;
+}
+
+const deletarRegistrosForcado = async function(id) {
+    const infoTrabalhador = await trabalhaRepository.pesquisarDadosTrabalhadorPorId(id);
+
+    if (!infoTrabalhador) {
+        return createError(404, `Desculpe, o id ${id} não foi encontrado`)
+    }
+
+    const dadosTrabalhador = await trabalhaRepository.deletarRegistrosForcado(id);
+    return dadosTrabalhador;
+}
+
+module.exports = {
+    criar: criar,
+    criarVariosRegistros: criarVariosRegistros,
+    pesquisarDadosTrabalhador: pesquisarDadosTrabalhador,
+    pesquisarDadosTrabalhadorPorQuery: pesquisarDadosTrabalhadorPorQuery,
+    deletarRegistros: deletarRegistros,
+    deletarRegistrosForcado: deletarRegistrosForcado
+}
+
 
