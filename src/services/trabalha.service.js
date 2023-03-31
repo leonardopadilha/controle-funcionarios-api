@@ -29,6 +29,16 @@ const criarVariosRegistros = async function(infoTrabalhadores) {
     return arrayTrabalhadores;
 }
 
+const pesquisarDadosTrabalhadorPorId = async function(id) {
+    const infoTrabalhador = await trabalhaRepository.pesquisarDadosTrabalhadorPorId(id)
+
+    if (!infoTrabalhador) {
+        return createError(404, `O id ${id} não foi encontrado`)
+    }
+
+    return infoTrabalhador;
+}
+
 const pesquisarDadosTrabalhador = async function() {
     const infoTrabalhadores = await trabalhaRepository.pesquisarDadosTrabalhador()
 
@@ -74,6 +84,7 @@ const deletarRegistrosForcado = async function(id) {
 module.exports = {
     criar: criar,
     criarVariosRegistros: criarVariosRegistros,
+    pesquisarDadosTrabalhadorPorId: pesquisarDadosTrabalhadorPorId,
     pesquisarDadosTrabalhador: pesquisarDadosTrabalhador,
     pesquisarDadosTrabalhadorPorQuery: pesquisarDadosTrabalhadorPorQuery,
     deletarRegistros: deletarRegistros,
