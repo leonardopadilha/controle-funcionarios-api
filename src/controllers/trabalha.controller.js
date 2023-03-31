@@ -34,6 +34,26 @@ const criarVariosRegistros = async function(req, res, next) {
     }
 }
 
+const pesquisarDadosTrabalhadorPorId = async function(req, res, next) {
+    try {
+        const errors = validationResult(req)
+
+        if (!errors.isEmpty()) {
+            throw createError(422, { errors: errors.array()})
+        }
+
+        const response = await trabalhaService.pesquisarDadosTrabalhadorPorId(req.params.id)
+
+        if (response && response.message) {
+            return response;
+        }
+
+        res.send(response)
+    } catch (error) {
+        return next(error)
+    }
+}
+
 const pesquisarDadosTrabalhador = async function(req, res, next) {
     try {
         const response = await trabalhaService.pesquisarDadosTrabalhador()
@@ -41,10 +61,30 @@ const pesquisarDadosTrabalhador = async function(req, res, next) {
         if (response && response.message) {
             throw response;
         }
-        
+
         res.send(response)
 
     } catch (error) {
         return next(error)   
+    }
+}
+
+const pesquisarDadosTrabalhadorPorQuery = async function(req, res, next) {
+    try {
+        const errors = validationResult(req)
+
+        if (errors.isEmpty()) {
+            throw createError(422, { errors: errors.array() })
+        }
+
+        const response = await trabalhaService.pesquisarDadosTrabalhadorPorQuery(req.query)
+
+        if (response && response.message) {
+            return response;
+        }
+
+        res.send(response)
+    } catch (error) {
+        return next(error)
     }
 }
