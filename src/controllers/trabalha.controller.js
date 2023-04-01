@@ -88,3 +88,17 @@ const pesquisarDadosTrabalhadorPorQuery = async function(req, res, next) {
         return next(error)
     }
 }
+
+const deletarRegistros = async function(req, res, next) {
+    try {
+        const response = await trabalhaService.deletarRegistros(req.params.id)
+
+        if (response && response.message) {
+            return response;
+        }
+
+        res.send(message)
+    } catch (error) {
+        return next(error)
+    }
+}
