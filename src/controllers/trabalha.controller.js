@@ -102,3 +102,27 @@ const deletarRegistros = async function(req, res, next) {
         return next(error)
     }
 }
+
+const deletarRegistrosForcado = async function(req, res, next) {
+    try {
+        const response = await trabalhaService.deletarRegistrosForcado(req.params.id)
+
+        if (response && response.message) {
+            return response;
+        }
+
+        res.send(message)
+    } catch (error) {
+        return next(error)
+    }
+}
+
+module.exports = {
+    criar: criar,
+    criarVariosRegistros: criarVariosRegistros,
+    pesquisarDadosTrabalhadorPorId: pesquisarDadosTrabalhadorPorId,
+    pesquisarDadosTrabalhador: pesquisarDadosTrabalhador,
+    pesquisarDadosTrabalhadorPorQuery: pesquisarDadosTrabalhadorPorQuery,
+    deletarRegistros: deletarRegistros,
+    deletarRegistrosForcado: deletarRegistrosForcado
+}
