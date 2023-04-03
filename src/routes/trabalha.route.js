@@ -5,14 +5,14 @@ const trabalhaController = require('../controllers/trabalha.controller')
 const trabalhaValidator = require('../validators/trabalha.validator')
 
 router
-    .post(trabalhaValidator.criar(), trabalhaController.criar)
-    .post(trabalhaController.criarVariosRegistros)
+    .post('/', trabalhaValidator.criar(), trabalhaController.criar)
+    .post("/varios", trabalhaController.criarVariosRegistros)
 
-    .get(trabalhaController.pesquisarDadosTrabalhadorPorQuery)
-    .get(trabalhaController.pesquisarDadosTrabalhadorPorId)
-    .get(trabalhaController.pesquisarDadosTrabalhador)
+    .get("/buscar", trabalhaController.pesquisarDadosTrabalhadorPorQuery)
+    .get("/:id", trabalhaController.pesquisarDadosTrabalhadorPorId)
+    .get("/", trabalhaController.pesquisarDadosTrabalhador)
 
-    .delete(trabalhaController.deletarRegistros)
-    .delete(trabalhaController.deletarRegistrosForcado)
+    .delete("/:id", trabalhaController.deletarRegistros)
+    .delete("/deletar/:id", trabalhaController.deletarRegistrosForcado)
 
 module.exports = router

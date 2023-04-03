@@ -2,7 +2,7 @@ const trabalhaRepository = require('../repository/trabalha.repository');
 const createError = require('http-errors')
 
 const criar = async function(dadosTrabalhador) {
-    const existeTrabalhador = await trabalhaRepository.pesquisarDadosTrabalhadorPorQuery({cod_func: dadosTrabalhador.cod_func});
+    const existeTrabalhador = await trabalhaRepository.pesquisarDadosTrabalhadorPorWhere({cod_func: dadosTrabalhador.cod_func});
 
     if (existeTrabalhador) {
         return createError(409, 'Informações já cadastradas')
