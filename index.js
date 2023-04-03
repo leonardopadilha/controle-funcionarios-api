@@ -13,6 +13,7 @@ const cargoRoute = require('./src/routes/cargo.route');
 const departamentoRoute = require('./src/routes/departamento.route');
 const dependenteRoute = require('./src/routes/dependente.route');
 const projetoRoute = require('./src/routes/projeto.route')
+const trabalhaRoute = require('./src/routes/trabalha.route')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,6 +23,7 @@ app.use('/api/cargos', cargoRoute);
 app.use('/api/departamentos', departamentoRoute);
 app.use('/api/dependentes', dependenteRoute);
 app.use('/api/projetos', projetoRoute);
+app.use('/api/trabalha', trabalhaRoute)
 
 app.use(handle_404Error);
 app.use(handleError)
