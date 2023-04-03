@@ -5,7 +5,7 @@ const trabalhaController = require('../controllers/trabalha.controller')
 const trabalhaValidator = require('../validators/trabalha.validator')
 
 router
-    .post('/', trabalhaValidator.criar(), trabalhaController.criar)
+    .post('/', trabalhaController.criar)
     .post("/varios", trabalhaController.criarVariosRegistros)
 
     .get("/buscar", trabalhaController.pesquisarDadosTrabalhadorPorQuery)

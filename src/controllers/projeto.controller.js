@@ -6,7 +6,7 @@ const criar = async function(req, res, next) {
     try {
         const errors = validationResult(req)
 
-        if (errors.isEmpty()) {
+        if (!errors.isEmpty()) {
             throw createError(422, { errors: errors.array() })
         }
 
