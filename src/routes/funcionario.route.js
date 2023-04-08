@@ -6,7 +6,7 @@ const verifyJWT = require('../middlewares/authorizator')
 
 router
     .get('/', verifyJWT, funcionarioController.pesquisarTodosFuncionarios)
-    .get('/:id', funcionarioValidator.login(), funcionarioController.pesquisarFuncionarioPorId)
+    .get('/:id', verifyJWT, funcionarioController.pesquisarFuncionarioPorId)
     .post('/', funcionarioValidator.criar(), funcionarioController.criar)
     
     .post('/login', funcionarioController.login)
