@@ -40,7 +40,7 @@ const pesquisarDadosTrabalhadorPorQuery = async function(horasProjeto) {
     return horasProjetoRetornado;
 }
 
-const deletarRegistros = async function(idFuncionario) {
+const deletarRegistros = async function(id) {
     return await Trabalha.destroy({ 
         where: {
             id: id
@@ -48,7 +48,7 @@ const deletarRegistros = async function(idFuncionario) {
     })
 }
 
-const deletarRegistrosForcado = async function(idFuncionario) {
+const deletarRegistrosForcado = async function(id) {
     return await Trabalha.destroy({
         where: {
             id: id
