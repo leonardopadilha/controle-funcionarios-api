@@ -3,13 +3,17 @@ const { validationResult } = require('express-validator');
 const createError = require('http-errors');
 
 const pesquisarTodosDadosTrabalhadorPorId = async function(req, res, next) {
-    const response = dadosTrabalhadorService.pesquisarTodosDadosTrabalhadorPorId(req.params.id)
+    try {
+        const response = await dadosTrabalhadorService.pesquisarTodosDadosTrabalhadorPorId(req.params.id)
 
     if (response && response.message) {
         return message;
     }
 
     res.send(response)
+    } catch (error) {
+        return next(error)
+    }
 }
 
 module.exports = {
