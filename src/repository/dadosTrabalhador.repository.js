@@ -1,30 +1,20 @@
-const db = require('../database/models')
-const Trabalhador = db.Trabalhador;
-const Dependentes = db.Dependentes;
-const Cargo = db.Cargo;
-const Departamento = db.Departamento;
-
+const { Funcionario, Dependente } = require('../database/models/index')
 
 const pesquisarTodosDadosTrabalhadorPorId = async function(id) {
-    const dadosTrabalhador = await Trabalha.findAll({
+    const dadosTrabalhador = await Funcionario.findOne({
         where: {
             id: id
         },
         include: [
             {
-                model: Dependentes,
-                as: 'dependentes'
-            },
-            {
-                model: Cargo,
-                as: 'cargos'
-            },
-            {
-                model: Departamento,
-                as: 'departamentos'
+                model: Dependente,
+                as: 'dependentes',
+                required : true,
+                attributes: ['id', 'nome', 'sexo', 'parentesco', 'dta_nasc']
             }
         ]
     });
+
     return dadosTrabalhador;
 }
 
